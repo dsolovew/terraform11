@@ -2,6 +2,10 @@ provider "aws" {
   region = "us-east-2"
 }
 
+resource "aws_eip" "static_ip" {
+  instance = "aws_instance.nginx_server.id"
+}
+
 resource "aws_security_group" "web_server_group" {
   name = "Web Server Security Group"
   description = "Ingress Egress rules for web server"
@@ -56,6 +60,11 @@ resource "aws_instance" "nginx_server" {
         "sudo service nginx restart"
     ]
   }
+
+lifecycle {
+  create_before_destroy = true
+}
+
 }
 
 resource "aws_key_pair" "ssh-key" {
