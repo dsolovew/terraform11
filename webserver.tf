@@ -16,13 +16,13 @@ resource "aws_security_group" "web_server_group" {
       }
   }
 
-  egress = [ {
+  egress {
     cidr_blocks = [ "0.0.0.0/0" ]
     description = "outbount rule"
     from_port   = 0
     protocol    = "-1"
     to_port     = 0
-  } ]
+  } 
 }
 
 resource "aws_instance" "nginx_server" {
