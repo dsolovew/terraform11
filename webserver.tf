@@ -30,12 +30,8 @@ resource "aws_instance" "nginx_server" {
   instance_type = "t3.micro"
   key_name      = "ssh-key"
   vpc_security_group_ids = [aws_security_group.web_server_group.id]
-  user_data = templatefile("index.html", {
-      f_name = "Denis"
-  })
-
   tags = {
-    "Name"  = "Web Server Build by Terraform"
+    "Name"  = "Web Server"
     "Owner" = "Denis Solovyev"
   }
 
