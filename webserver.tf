@@ -29,7 +29,7 @@ resource "aws_instance" "nginx_server" {
   ami           = "ami-0a91cd140a1fc148a"
   instance_type = "t3.micro"
   key_name      = "ssh-key"
-  vpc_security_group_ids = [ "aws_security_group.web_server_group.id" ]
+  vpc_security_group_ids = [aws_security_group.web_server_group.id]
   user_data = templatefile("index.html", {
       f_name = "Denis"
   })
