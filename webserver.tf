@@ -3,7 +3,7 @@ provider "aws" {
 }
 
 resource "aws_eip" "static_ip" {
-  instance = "aws_instance.nginx_server.id"
+  instance = aws_instance.nginx_server.id
 }
 
 resource "aws_security_group" "web_server_group" {
